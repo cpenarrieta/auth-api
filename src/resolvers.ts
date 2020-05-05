@@ -45,6 +45,21 @@ const resolvers = {
         throw new Error("invalid username or password");
       }
 
+      const refreshToken = sign(
+        {
+          userId: user.id,
+        },
+        "anotherSecret",
+        {
+          // TODO set secret sign
+          expiresIn: "15d",
+        }
+      );
+
+      ctx.res.setCookie("auth-gateway-token", refreshToken, {
+        httpOnly: true,
+      });
+
       const accessToken = sign(
         {
           userId: user.id,

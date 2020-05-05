@@ -1,9 +1,14 @@
 import fastify from "fastify";
-import graphqlPlugin from './src/graphql'
+import graphqlPlugin from "./src/graphql";
 
 const server = fastify();
 
-server.register(graphqlPlugin)
+server.register(require("fastify-cookie"), {
+  secret: "cookie signature secret", // for cookies signature TODO
+  parseOptions: {},
+});
+
+server.register(graphqlPlugin);
 
 server.get("/ping", async (request, reply) => {
   return "pong\n";
