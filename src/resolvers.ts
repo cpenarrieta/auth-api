@@ -1,3 +1,5 @@
+import * as argon2 from "argon2";
+
 const resolvers = {
   Query: {
     users: async (obj, args, ctx) => {
@@ -6,10 +8,16 @@ const resolvers = {
     },
   },
   Mutation: {
-    createUser: async (obj, { user: userInput }, ctx) => {
+    createUser: async (obj, { user: {firstName, lastName, email, password} }, ctx) => {
+
+      const hash = password && await argon2.hash(password); // TODO customize hash
+
       const user = await ctx.prisma.user.create({
         data: {
-          ...userInput,
+          firstName,
+          lastName,
+          email,
+          password: hash
         },
       });
       return user;

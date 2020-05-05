@@ -6,16 +6,17 @@
   "scripts": {
     "build": "tsc -p tsconfig.json --watch",
     "start": "nodemon ts-out/index.js",
-    "dev": "ts-node ./index.ts --watch"
+    "dev": "nodemon --exec ts-node ./index.ts --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "2.0.0-beta.4",
+    "argon2": "^0.26.2",
     "fastify": "^2.14.0",
     "fastify-gql": "^3.3.0",
     "fastify-plugin": "^1.6.1",
-    "graphql-tools": "^5.0.0",
-    "@prisma/client": "2.0.0-beta.4"
+    "graphql-tools": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^13.13.4",

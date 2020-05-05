@@ -13,5 +13,6 @@ model user {
   firstName String?
   id        Int      @default(autoincrement()) @id
   lastName  String?
+  password  String?
   updatedAt DateTime @default(now())
 }
