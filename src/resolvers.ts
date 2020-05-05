@@ -6,8 +6,13 @@ const resolvers = {
     },
   },
   Mutation: {
-    createUser() {
-      return {};
+    createUser: async (obj, { user: userInput }, ctx) => {
+      const user = await ctx.prisma.user.create({
+        data: {
+          ...userInput,
+        },
+      });
+      return user;
     },
   },
 };
