@@ -17,12 +17,22 @@ const typeDefs = `
     password: String
   }
 
+  input LoginInput {
+    email: String
+    password: String
+  }
+
+  type LoginResponse {
+    accessToken: String
+  }
+
   type Query {
     users: [User]
   }
 
   type Mutation {
     createUser(user: UserInput): User
+    login(user: LoginInput): LoginResponse
   }
 `;
 

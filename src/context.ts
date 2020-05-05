@@ -7,5 +7,7 @@ export interface Context {
 }
 
 export function createContext(): Context {
-  return { prisma };
+  return { 
+    prisma 
+  };
 }

@@ -9,7 +9,7 @@ datasource postgresql {
 
 model user {
   createdAt DateTime @default(now())
-  email     String?
+  email     String   @unique
   firstName String?
   id        Int      @default(autoincrement()) @id
   lastName  String?
