@@ -1,0 +1,26 @@
+{
+  "name": "auth-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --watch",
+    "start": "nodemon ts-out/index.js",
+    "dev": "ts-node ./index.ts --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^2.14.0",
+    "fastify-gql": "^3.3.0",
+    "fastify-plugin": "^1.6.1",
+    "graphql-tools": "^5.0.0",
+    "@prisma/client": "2.0.0-beta.4"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.4",
+    "typescript": "^3.8.3",
+    "ts-node": "8.10.1",
+    "@prisma/cli": "2.0.0-beta.4"
+  }
+}
