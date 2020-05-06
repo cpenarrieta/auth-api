@@ -2,6 +2,7 @@ import {
   verifyRefreshToken,
   createAccessToken,
   createRefreshToken,
+  sendRefreshToken,
 } from "./token";
 import prisma from "../context";
 
@@ -43,11 +44,19 @@ export const refreshToken = async (req: any, res: any) => {
       .code(401);
   }
 
+  //check token version
+  if (user.tokenVersion !== payload.tokenVersion) {
+    return res
+      .send({
+        ok: false,
+        accessToken: "",
+      })
+      .code(401);
+  }
+
   // refresh refresh token
   const refreshToken = createRefreshToken(user);
-  res.setCookie("auth-gateway-token", refreshToken, {
-    httpOnly: true,
-  });
+  sendRefreshToken(res, refreshToken)
 
   // refresh access Token
   const accessToken = createAccessToken(user);

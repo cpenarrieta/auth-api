@@ -8,11 +8,12 @@ datasource postgresql {
 }
 
 model user {
-  createdAt DateTime @default(now())
-  email     String   @unique
-  firstName String?
-  id        Int      @default(autoincrement()) @id
-  lastName  String?
-  password  String?
-  updatedAt DateTime @default(now())
+  createdAt    DateTime @default(now())
+  email        String   @unique
+  firstName    String?
+  id           Int      @default(autoincrement()) @id
+  lastName     String?
+  password     String?
+  tokenVersion Int?     @default(0)
+  updatedAt    DateTime @default(now())
 }

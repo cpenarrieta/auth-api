@@ -1,6 +1,10 @@
 import * as argon2 from "argon2";
 import { Context } from "./context";
-import { createAccessToken, createRefreshToken } from "./auth/token";
+import {
+  createAccessToken,
+  createRefreshToken,
+  sendRefreshToken,
+} from "./auth/token";
 import { isAuthenticated } from "./auth/isAuthenticated";
 
 const resolvers = {
@@ -56,10 +60,7 @@ const resolvers = {
       }
 
       const refreshToken = createRefreshToken(user);
-
-      ctx.res.setCookie("auth-gateway-token", refreshToken, {
-        httpOnly: true,
-      });
+      sendRefreshToken(ctx.res, refreshToken);
 
       const accessToken = createAccessToken(user);
 
