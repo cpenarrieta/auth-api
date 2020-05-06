@@ -34,6 +34,7 @@ const typeDefs = `
   type Mutation {
     createUser(user: UserInput): User
     login(user: LoginInput): LoginResponse
+    revokeRefreshToken(userId: ID): Boolean
   }
 `;
 

@@ -68,6 +68,30 @@ const resolvers = {
         accessToken,
       };
     },
+    revokeRefreshToken: async (_, { userId }, ctx: Context) => {
+      isAuthenticated(ctx); // TODO replace with isAdmin
+
+      const user = await ctx.prisma.user.findOne({
+        where: {
+          id: parseFloat(userId),
+        },
+      });
+
+      if (!user) {
+        return false;
+      }
+
+      await ctx.prisma.user.update({
+        where: {
+          id: parseFloat(userId),
+        },
+        data: {
+          tokenVersion: user.tokenVersion + 1,
+        },
+      });
+
+      return true;
+    },
   },
 };
 
