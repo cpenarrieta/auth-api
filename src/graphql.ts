@@ -12,8 +12,8 @@ const schema = makeExecutableSchema({
 const registerGraphQL = (fastify, _, next) => {
   fastify.register(fastifyGQL, {
     schema,
-    graphiql: true,
     context: createContext,
+    graphiql: "playground", // TODO set to false in PRODUCTION
   });
 
   next();

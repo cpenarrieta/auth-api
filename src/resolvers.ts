@@ -1,12 +1,22 @@
 import * as argon2 from "argon2";
 import { Context } from "./context";
-import {createAccessToken, createRefreshToken} from './auth'
+import { createAccessToken, createRefreshToken } from "./auth";
+import { isAuthenticated } from "./isAuthenticated";
 
 const resolvers = {
   Query: {
     users: async (_, args, ctx: Context) => {
       const users = await ctx.prisma.user.findMany();
       return users;
+    },
+    me: async (_, args, ctx: Context) => {
+      const { userId } = isAuthenticated(ctx);
+      const user = await ctx.prisma.user.findOne({
+        where: {
+          id: userId as number,
+        },
+      });
+      return user;
     },
   },
   Mutation: {
