@@ -16,3 +16,5 @@ export function createContext(req, res): Context {
     res,
   };
 }
+
+export default prisma

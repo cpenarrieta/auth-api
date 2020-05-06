@@ -1,7 +1,7 @@
 import * as argon2 from "argon2";
 import { Context } from "./context";
-import { createAccessToken, createRefreshToken } from "./auth";
-import { isAuthenticated } from "./isAuthenticated";
+import { createAccessToken, createRefreshToken } from "./auth/token";
+import { isAuthenticated } from "./auth/isAuthenticated";
 
 const resolvers = {
   Query: {

@@ -1,4 +1,4 @@
-import { verifyToken } from "./auth";
+import { verifyToken } from "./token";
 
 export const isAuthenticated = (context) => {
   const authorization = context.req.headers["authorization"];

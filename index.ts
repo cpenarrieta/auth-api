@@ -1,6 +1,7 @@
-import "dotenv/config"
+import "dotenv/config";
 import fastify from "fastify";
 import graphqlPlugin from "./src/graphql";
+import { refreshToken } from "./src/auth/refreshToken";
 
 const server = fastify();
 
@@ -11,9 +12,11 @@ server.register(require("fastify-cookie"), {
 
 server.register(graphqlPlugin);
 
-server.get("/ping", async (request, reply) => {
+server.get("/ping", async (req, res) => {
   return "pong\n";
 });
+
+server.post("/refresh_token", refreshToken);
 
 server.listen(4001, (err, address) => {
   if (err) {
