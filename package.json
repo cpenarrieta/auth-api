@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json --watch",
-    "start": "nodemon ts-out/index.js",
+    "start": "nodemon .ts-out/index.js",
     "dev": "nodemon --exec ts-node ./index.ts --watch"
   },
   "author": "",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@prisma/client": "2.0.0-beta.4",
     "argon2": "^0.26.2",
+    "dotenv": "^8.2.0",
     "fastify": "^2.14.0",
     "fastify-cookie": "^3.6.1",
     "fastify-gql": "^3.3.0",

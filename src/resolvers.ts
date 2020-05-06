@@ -1,6 +1,6 @@
 import * as argon2 from "argon2";
-import { sign } from "jsonwebtoken";
 import { Context } from "./context";
+import {createAccessToken, createRefreshToken} from './auth'
 
 const resolvers = {
   Query: {
@@ -45,31 +45,13 @@ const resolvers = {
         throw new Error("invalid username or password");
       }
 
-      const refreshToken = sign(
-        {
-          userId: user.id,
-        },
-        "anotherSecret",
-        {
-          // TODO set secret sign
-          expiresIn: "15d",
-        }
-      );
+      const refreshToken = createRefreshToken(user);
 
       ctx.res.setCookie("auth-gateway-token", refreshToken, {
         httpOnly: true,
       });
 
-      const accessToken = sign(
-        {
-          userId: user.id,
-        },
-        "dsadfjhkgsadfjhgasdfkuugiuysgdf",
-        {
-          // TODO set secret sign
-          expiresIn: "15m",
-        }
-      );
+      const accessToken = createAccessToken(user);
 
       return {
         accessToken,

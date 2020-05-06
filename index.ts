@@ -1,10 +1,11 @@
+import "dotenv/config"
 import fastify from "fastify";
 import graphqlPlugin from "./src/graphql";
 
 const server = fastify();
 
 server.register(require("fastify-cookie"), {
-  secret: "cookie signature secret", // for cookies signature TODO
+  secret: process.env.COOKIE_SIGNATURE_SECRET,
   parseOptions: {},
 });
 

@@ -62,11 +62,10 @@ typings/
 
 # clinic
 *clinic*
-package-lock.json
 
 # vscode
 .vscode/
 
-/ts-out
+/.ts-out
 
 /prisma/.env
