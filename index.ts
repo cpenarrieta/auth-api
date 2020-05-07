@@ -10,6 +10,10 @@ server.register(require("fastify-cookie"), {
   parseOptions: {},
 });
 
+server.register(require("fastify-cors"), {
+  origin: ["http://localhost:3000"], //TODO set localhost to dev only
+});
+
 server.register(graphqlPlugin);
 
 server.get("/ping", async (req, res) => {
