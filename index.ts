@@ -5,13 +5,14 @@ import { refreshToken } from "./src/auth/refreshToken";
 
 const server = fastify();
 
+server.register(require("fastify-cors"), {
+  credentials: true,
+  origin: ["http://localhost:3000"], //TODO set localhost to dev only
+});
+
 server.register(require("fastify-cookie"), {
   secret: process.env.COOKIE_SIGNATURE_SECRET,
   parseOptions: {},
-});
-
-server.register(require("fastify-cors"), {
-  origin: ["http://localhost:3000"], //TODO set localhost to dev only
 });
 
 server.register(graphqlPlugin);
